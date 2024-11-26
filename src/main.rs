@@ -11,7 +11,7 @@ use core::usize;
 use core::mem::MaybeUninit;
 use alloc::borrow::ToOwned;
 use alloc::format;
-use alloc::string::{String, ToString};
+use alloc::string::String;
 use dayrunner::dayrunner::run_day;
 use psp::sys::{self, ClearBuffer, TexturePixelFormat, DisplayPixelFormat,};
 use psp::vram_alloc::get_vram_allocator;
@@ -226,13 +226,11 @@ fn psp_main() {
         }
         else if (0..25).contains(&selection) {
             if !action_complete {
-                debug_to_screen(
-                    &format!(
-                        "Running day {}\n{}\nPress (o) to exit back to menu...\n",
-                        selection + 1,
-                        run_day(selection)
-                    ).to_string()
-                );
+                debug_to_screen(&format!(
+                    "Running day {}\n{}\nPress (o) to exit back to menu...\n",
+                    selection + 1,
+                    run_day(selection)
+                ));
                 action_complete = true;
             }
 
