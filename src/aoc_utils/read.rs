@@ -1,20 +1,24 @@
-use alloc::string::{String, ToString};
-use alloc::vec;
-use core::char;
+use alloc::{string::String, format, vec};
 use core::ffi::c_void;
 use psp::sys;
 
+use super::logging;
 
-pub fn into_str(infile: &str) -> String {  // TODO: Use Result
+
+pub fn into_str(infile: &[u8]) -> String {  // TODO: Use Resul
+    let logger = logging::AoCLogger::new(String::from("./reader.log"));
+    logger.log(&format!("Trying to read {:?}, {}", infile, infile.len()));
     unsafe {
         let fd = sys::sceIoOpen(
             infile.as_ptr(),
-            sys::IoOpenFlags::CREAT | sys::IoOpenFlags::RD_ONLY,
+            // sys::IoOpenFlags::CREAT | sys::IoOpenFlags::RD_ONLY,
+             sys::IoOpenFlags::RD_ONLY,
             0o777,
         );
 
         if fd.0 < 0 {
-            panic!("Failed to open file: {}", infile); // Panic on failure
+            logger.log(&format!("[reader] error opening {:?}", infile));
+            panic!("Failed to open file: {:?}", infile); // Panic on failure
         }
 
         let mut fd_stat = psp::sys::SceIoStat {
@@ -28,31 +32,19 @@ pub fn into_str(infile: &str) -> String {  // TODO: Use Result
         };
 
         if sys::sceIoGetstat(infile.as_ptr(), &mut fd_stat) < 0 {
-            panic!("Failed to get file stats: {}", infile); // Panic on failure
+            logger.log(&format!("[reader] error getting file stats for {:?}", infile));
+            panic!("Failed to get file stats: {:?}", infile); // Panic on failure
         }
 
         let mut buffer = vec![0u8; fd_stat.st_size as usize];
 
         if sys::sceIoRead(fd, buffer.as_mut_ptr() as *mut c_void, fd_stat.st_size as u32) < 0 {
-            panic!("Failed to read file: {}", infile); // Panic on failure
+            logger.log(&format!("[reader] error reading from {:?}", infile));
+            panic!("Failed to read file: {:?}", infile); // Panic on failure
         }
 
         sys::sceIoClose(fd);
 
-        String::from_utf8(buffer).expect("File content is not valid UTF-8") // Panic if UTF-8 is invalid
+        String::from_utf8_unchecked(buffer)
     }
-}
-
-pub fn into_lines_vec(infile: &str) -> vec::Vec<String> {  // TODO: Use Result
-    let content = into_str(infile); // If `into_str` panics, this will bubble up
-    content.lines().map(|line| line.to_string()).collect()
-}
-
-pub fn into_char_metrix(infile: &str) -> vec::Vec<vec::Vec<char>> {  // TODO: Use Result
-    let mut res_m: vec::Vec<vec::Vec<char>> = vec::Vec::new();
-    let lines = into_lines_vec(infile);
-    for line in lines {
-        res_m.push(line.chars().collect());
-    }
-    res_m
 }

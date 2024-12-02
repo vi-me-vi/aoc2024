@@ -20,5 +20,20 @@ For puzzles please visit [AoC website](https://adventofcode.com/2024)
     \__/
 ```
 
+## Inputs
+
+Expected file structure on your console
+
+```
+/path/to/game/folder/
+
+├── EBOOT.PBP
+├── day1
+│   └── input.txt
+├── day2
+│   └── input.txt
+...
+```
+
 > [!WARNING]
 > No quality code found here.

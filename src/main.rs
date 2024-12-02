@@ -12,6 +12,7 @@ use core::mem::MaybeUninit;
 use alloc::borrow::ToOwned;
 use alloc::format;
 use alloc::string::String;
+use aoc_utils::{logging, read};
 use dayrunner::dayrunner::run_day;
 use psp::sys::{self, ClearBuffer, TexturePixelFormat, DisplayPixelFormat,};
 use psp::vram_alloc::get_vram_allocator;
@@ -95,6 +96,11 @@ static DAYS: [&str; 25] = [
     "21", "22", "23", "24", "25"
 ];
 
+static DAYS_INPUT: [&[u8]; 2] = [
+    b"./day1/input.txt\0",
+    b"./day2/input.txt\0",
+];
+
 
 fn debug_to_screen(text: &str) {
     unsafe {
@@ -168,7 +174,11 @@ fn run_menu(art_index: usize) -> i8 {
 
 fn psp_main() {
     psp::enable_home_button();
+    let logger = logging::AoCLogger::new(String::from("./main.log"));
+    logger.log(&format!("[main] logger initiated"));
 
+
+    logger.log(&format!("[main] initiating psp output"));
     let allocator = get_vram_allocator().unwrap();
     unsafe {
         let fbp0 = allocator.alloc_texture_pixels(BUF_WIDTH, SCREEN_HEIGHT, TexturePixelFormat::Psm8888).as_mut_ptr_from_zero();
@@ -217,6 +227,7 @@ fn psp_main() {
         psp::sys::sceKernelUtilsMt19937Init(mtc, date.microseconds);
     }
 
+    logger.log(&format!("[main] running menu"));
     loop {
         if menu {
             unsafe { art_index = psp::sys::sceKernelUtilsMt19937UInt(mtc); }
@@ -226,10 +237,17 @@ fn psp_main() {
         }
         else if (0..25).contains(&selection) {
             if !action_complete {
+                let input: String;
+                if (selection as usize) < DAYS_INPUT.len() {
+                    input = read::into_str(DAYS_INPUT[selection as usize]);
+                } else {
+                    input = String::new();
+                }
+                logger.log(&format!("[main] running day {}", selection+1));
                 debug_to_screen(&format!(
                     "Running day {}\n{}\nPress (o) to exit back to menu...\n",
                     selection + 1,
-                    run_day(selection)
+                    run_day(selection, input)
                 ));
                 action_complete = true;
             }
