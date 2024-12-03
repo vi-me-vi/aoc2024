@@ -1,6 +1,8 @@
 # Advent Of Code 2024 :christmas_tree:
 
-For puzzles please visit [AoC website](https://adventofcode.com/2024)
+2024 Advent of Code solutions, written in rust, to run on ol' reliable PSP (Play Station Portable)
+
+For puzzles & puzzle inputs please visit [AoC website](https://adventofcode.com/2024)
 
 ## Have fun!!!
 
