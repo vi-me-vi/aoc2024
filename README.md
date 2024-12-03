@@ -39,9 +39,9 @@ Expected file structure on your console
 
 ## Demo
 
-![demo1](https://github.com/vi-me-vi/aoc2024/blob/main/demo1.jpg?raw=true)
+![alt text](https://github.com/vi-me-vi/aoc2024/blob/main/demo1.jpg?raw=true "demo 1")
 
-![demo2](https://github.com/vi-me-vi/aoc2024/blob/main/demo2.bmp?raw=true)
+![alt text](https://github.com/vi-me-vi/aoc2024/blob/main/demo2.bmp?raw=true "demo 2")
 
 > [!WARNING]
 > No quality code found here.
