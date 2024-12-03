@@ -1,4 +1,4 @@
-# Advent Of Code 2024 :christmas_tree:
+~~~~# Advent Of Code 2024 :christmas_tree:
 
 2024 Advent of Code solutions, written in rust, to run on ol' reliable PSP (Play Station Portable)
 
