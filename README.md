@@ -37,5 +37,11 @@ Expected file structure on your console
 ...
 ```
 
+## Demo
+
+![demo1](https://github.com/vi-me-vi/aoc2024/blob/main/demo1.jpg?raw=true)
+
+![demo2](https://github.com/vi-me-vi/aoc2024/blob/main/demo2.bmp?raw=true)
+
 > [!WARNING]
 > No quality code found here.

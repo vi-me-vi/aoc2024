@@ -9,13 +9,10 @@ pub fn d3_run(input: String) -> String {
     let mut res1: i32 = 0;
     let split1 = input.split("mul(");
     for m in split1 {
-        if !m.contains(")") {
-            continue;
-        }
         let hold: Vec<&str>;
         match m.split(")").next() {
             Some(val) => hold = val.split(",").collect(),
-            None => return String::from("Error, wrong mul() arguments in input"),
+            None => continue,
         }
         if hold.len() == 2 && hold[0].parse::<i32>().is_ok() && hold[1].parse::<i32>().is_ok() {
             res1 += hold[0].parse::<i32>().unwrap() * hold[1].parse::<i32>().unwrap();
@@ -31,23 +28,18 @@ pub fn d3_run(input: String) -> String {
         let line: &str;
         if i == 0 {
             line = l;
-        } else if l.contains("do()") {
+        } else {
             match l.split_once("do()") {
                 Some(val) => line = val.1,
-                None => return String::from(*l),
+                None => continue,
             }
-        } else {
-            continue;
         }
         let split2_2 = line.split("mul(");
         for m in split2_2 {
-            if !m.contains(")") {
-                continue;
-            }
             let hold: Vec<&str>;
             match m.split(")").next() {
                 Some(val) => hold = val.split(",").collect(),
-                None => return String::from("Error, wrong mul() arguments in input"),
+                None => continue,
             }
             if hold.len() == 2 && hold[0].parse::<i32>().is_ok() && hold[1].parse::<i32>().is_ok() {
                 res2 += hold[0].parse::<i32>().unwrap() * hold[1].parse::<i32>().unwrap();
