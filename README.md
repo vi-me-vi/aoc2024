@@ -45,7 +45,5 @@ Expected file structure on your console
     <img src="https://github.com/vi-me-vi/aoc2024/blob/main/misc/demo2.bmp?raw=true" alt="Demo 2">
 </p>
 
-![alt text]( "demo 2")
-
 > [!WARNING]
 > No quality code found here.
