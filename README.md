@@ -39,9 +39,13 @@ Expected file structure on your console
 
 ## Demo
 
-![alt text](https://github.com/vi-me-vi/aoc2024/blob/main/misc/demo1.jpg?raw=true "demo 1")
+<p align="center">
+    <img src="https://github.com/vi-me-vi/aoc2024/blob/main/misc/demo1.jpg?raw=true" alt="Demo 1">
+    <br>
+    <img src="https://github.com/vi-me-vi/aoc2024/blob/main/misc/demo2.bmp?raw=true" alt="Demo 2">
+</p>
 
-![alt text](https://github.com/vi-me-vi/aoc2024/blob/main/misc/demo2.bmp?raw=true "demo 2")
+![alt text]( "demo 2")
 
 > [!WARNING]
 > No quality code found here.
