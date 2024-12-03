@@ -63,5 +63,5 @@ pub fn d3_run(input: String) -> String {
     logger.log(&format!("[day3] part two: {:?}", res2));
 
 
-    format!("Day 2:\n    PART 1: {:#?}\n    PART 2: {:#?}\n", res1, res2)
+    format!("Day 3:\n    PART 1: {:#?}\n    PART 2: {:#?}\n", res1, res2)
 }
