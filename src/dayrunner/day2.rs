@@ -11,6 +11,7 @@ pub fn d2_run(input: String) -> String {
 
     while let Some(line) = lines.pop() {
         let mut line_split = line.split_whitespace();
+        // TODO: needs map here
         let mut nvec: Vec<u32> = Vec::new();
         while let Some(num) = line_split.next() {
             nvec.push(num.parse().unwrap());
@@ -35,7 +36,13 @@ pub fn d2_run(input: String) -> String {
             continue;
         }
         for i in 0..l.len() {
-            let l_c: Vec<u32> = l.into_iter().enumerate().filter(|&(id, _)| id != i).map(|(_, v)| *v).collect();  // NOTE: Retain by id due to duplicated entries
+            // NOTE: Retain by id due to duplicated entries
+            let l_c: Vec<u32> = l
+                .into_iter()
+                .enumerate()
+                .filter(|&(id, _)| id != i).map(|(_, v)| *v)
+                .collect();
+
             if l_c.is_sorted_by(|x, y| {x > y && x.abs_diff(*y) < 4}) || l_c.is_sorted_by(|x, y| {x < y && x.abs_diff(*y) < 4}) {
                 res2 += 1;
                 continue 'outer;

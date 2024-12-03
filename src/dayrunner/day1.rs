@@ -10,7 +10,8 @@ pub fn d1_run(input: String) -> String {
     let mut r_vec: Vec<i32> = Vec::new();
     {
         let mut lines_vec: Vec<String> = input.lines().map(|line| line.trim().to_string()).collect();
-        logger.log(&format!("{:#?}", lines_vec));
+
+        // TODO: map here
         while let Some(line) = lines_vec.pop() {
             let mut line_split = line.split_whitespace();
             match line_split.next() {
