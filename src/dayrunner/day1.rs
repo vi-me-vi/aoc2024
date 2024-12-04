@@ -45,7 +45,7 @@ pub fn d1_run(input: String) -> String {
     let mut res2: i32 = 0;
 
     for l in &l_vec {
-        res2 += l * (r_vec.iter().filter(|&&x| x == *l).count() as i32);
+        res2 += l * (r_vec.iter().filter(|&&x| x == *l).count() as i32);  // TODO: since lists are sorted, only "compatibility window" has to be checked in 2nd list
     }
     logger.log(&format!("[day1] part two: {}", res2));
 
