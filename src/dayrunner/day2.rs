@@ -5,8 +5,7 @@ use crate::aoc_utils::logging;
 pub fn d2_run(input: String) -> String {
     let logger = logging::AoCLogger::new(String::from("./day2/run.log"));
     let mut matrix: Vec<Vec<u32>> = Vec::new();
-    let mut lines: Vec<String>;
-    lines = input.lines().map(|line| line.trim().to_string()).collect();
+    let mut lines: Vec<String> = input.lines().map(|line| line.trim().to_string()).collect();
 
 
     while let Some(line) = lines.pop() {

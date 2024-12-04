@@ -25,7 +25,6 @@ pub fn d3_run(input: String) -> String {
             res1 += a * b;
         }
     }
-
     logger.log(&format!("[day3] part one: {:?}", res1));
 
     // PART 2
