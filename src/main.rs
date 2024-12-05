@@ -96,11 +96,12 @@ static DAYS: [&str; 25] = [
     "21", "22", "23", "24", "25"
 ];
 
-static DAYS_INPUT: [&[u8]; 4] = [
+static DAYS_INPUT: [&[u8]; 5] = [
     b"./day1/input.txt\0",
     b"./day2/input.txt\0",
     b"./day3/input.txt\0",
     b"./day4/input.txt\0",
+    b"./day5/input.txt\0",
 ];
 
 
